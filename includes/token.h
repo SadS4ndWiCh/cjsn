@@ -26,4 +26,7 @@ typedef struct {
     char* literal;
 } token_t;
 
+const char* token_str(token_kind_e tok);
+token_kind_e token_lookup_ident(char* ident);
+
 #endif

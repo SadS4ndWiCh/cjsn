@@ -5,6 +5,8 @@
 #include "token.h"
 #endif
 
+#define IS_ALPHA(s) ((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z'))
+
 typedef struct {
     char* src;
     int len;
@@ -14,6 +16,7 @@ typedef struct {
 
 void _lexer_eat_whitespace(lexer_t* lex);
 void _lexer_read_char(lexer_t* lex);
+char _lexer_seek_char(lexer_t* lex);
 char* _lexer_read_string(lexer_t* lex);
 token_t lexer_next(lexer_t* lex);
 
