@@ -41,8 +41,8 @@ char* _lexer_read_string(lexer_t *lex) {
 }
 
 token_t lexer_next(lexer_t *lex) {
-    _lexer_eat_whitespace(lex);
     _lexer_read_char(lex);
+    _lexer_eat_whitespace(lex);
 
     switch (lex->ch) {
         case '{': return (token_t) { .kind = TK_OPBRACE, .literal = "{" };
