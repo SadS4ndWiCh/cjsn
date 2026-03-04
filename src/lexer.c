@@ -59,6 +59,17 @@ char* _lexer_read_string(lexer_t *lex) {
     return str_view_get(view);
 }
 
+char* _lexer_read_number(lexer_t *lex) {
+    int start = lex->pos;
+
+    for (char ch = _lexer_seek_char(lex); IS_DIGIT(ch); ch = _lexer_seek_char(lex)) {
+        _lexer_read_char(lex);
+    }
+
+    str_view_t view = { .src = lex->src + start - 1, .len = lex->pos - start + 1 };
+    return str_view_get(view);
+}
+
 token_t lexer_next(lexer_t *lex) {
     _lexer_read_char(lex);
     _lexer_eat_whitespace(lex);
@@ -80,6 +91,11 @@ token_t lexer_next(lexer_t *lex) {
                 char* literal = _lexer_read_ident(lex);
                 token_kind_e tok = token_lookup_ident(literal);
                 return (token_t) { .kind = tok, .literal = literal };
+            }
+
+            if (IS_DIGIT(lex->ch)) {
+                char* literal = _lexer_read_number(lex);
+                return (token_t) { .kind = TK_NUMBER, .literal = literal };
             }
 
             return (token_t) { .kind = TK_INVALID, .literal = "" };
