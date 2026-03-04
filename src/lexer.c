@@ -47,7 +47,10 @@ token_t lexer_next(lexer_t *lex) {
     switch (lex->ch) {
         case '{': return (token_t) { .kind = TK_OPBRACE, .literal = "{" };
         case '}': return (token_t) { .kind = TK_CLBRACE, .literal = "}" };
+        case '[': return (token_t) { .kind = TK_OPBRACKET, .literal = "[" };
+        case ']': return (token_t) { .kind = TK_CLBRACKET, .literal = "]" };
         case ':': return (token_t) { .kind = TK_COLON, .literal = ":" };
+        case ',': return (token_t) { .kind = TK_COLON, .literal = "," };
         case '"': {
             char* literal = _lexer_read_string(lex);
             return (token_t) { .kind = TK_STRING, .literal = literal };
