@@ -17,6 +17,7 @@ typedef enum {
     TK_NUMBER,
     TK_TRUE,
     TK_FALSE,
+    TK_NULL,
 
     TK_LENGTH
 } token_kind_e;

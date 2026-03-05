@@ -15,6 +15,7 @@ const char* token_str(token_kind_e tok) {
         case TK_NUMBER:    return "TK_NUMBER";
         case TK_TRUE:      return "TK_TRUE";
         case TK_FALSE:     return "TK_FALSE";
+        case TK_NULL:      return "TK_NULL";
         default:           return "UNKNOWN";
     }
 }
@@ -22,5 +23,6 @@ const char* token_str(token_kind_e tok) {
 token_kind_e token_lookup_ident(char* ident) {
     if (strcmp(ident, "true") == 0) return TK_TRUE;
     if (strcmp(ident, "false") == 0) return TK_FALSE;
+    if (strcmp(ident, "null") == 0) return TK_NULL;
     return TK_INVALID;
 }
