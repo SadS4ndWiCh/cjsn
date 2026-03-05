@@ -29,7 +29,7 @@ void _lexer_read_char(lexer_t *lex) {
 }
 
 char _lexer_seek_char(lexer_t *lex) {
-    if (lex->pos + 1 >= lex->len) {
+    if (lex->pos >= lex->len) {
         return 0;
     }
 
@@ -62,7 +62,7 @@ char* _lexer_read_string(lexer_t *lex) {
 char* _lexer_read_number(lexer_t *lex) {
     int start = lex->pos;
 
-    for (char ch = _lexer_seek_char(lex); IS_DIGIT(ch); ch = _lexer_seek_char(lex)) {
+    while (IS_DIGIT(_lexer_seek_char(lex))) {
         _lexer_read_char(lex);
     }
 
