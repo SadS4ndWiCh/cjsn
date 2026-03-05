@@ -10,5 +10,10 @@ DIST := bin
 dist:
 	mkdir -p $(DIST)
 
-build: dist
-	$(CC) $(CFLAGS) $(CINCLUDES) -o $(DIST)/$(NAME) $(SRCS)
+test: dist
+	$(CC) $(CFLAGS) $(CINCLUDES) -o $(DIST)/$(NAME) $(SRCS) test/main.c
+
+repl: dist
+	$(CC) $(CFLAGS) $(CINCLUDES) -o $(DIST)/repl $(SRCS) repl/main.c
+
+build: test repl
